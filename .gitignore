@@ -1,0 +1,5 @@
+.idea/
+checkpoints/
+fashion_data/
+market_data/
+pose_estimator.h5
