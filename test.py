@@ -22,9 +22,6 @@ web_dir = os.path.join(opt.results_dir, opt.name, '%s_%s' % (opt.phase, opt.whic
 
 webpage = html.HTML(web_dir, 'Experiment = %s, Phase = %s, Epoch = %s' % (opt.name, opt.phase, opt.which_epoch))
 
-# print(opt.how_many)
-# print(len(dataset))
-
 model = model.eval()
 print(model.training)
 

@@ -55,7 +55,12 @@ class BaseModel(nn.Module):
     def load_network(self, network, network_label, epoch_label):
         save_filename = '%s_net_%s.pth' % (epoch_label, network_label)
         save_path = os.path.join(self.save_dir, save_filename)
-        network.load_state_dict(torch.load(save_path))
+        state_dict = torch.load(save_path)
+        for k in list(state_dict.keys()):
+            if (k.find('running_mean') > 0) or (k.find('running_var') > 0):
+                del state_dict[k]
+                print('\n'.join(map(str, sorted(state_dict.keys()))))
+        network.load_state_dict(state_dict)
 
     # update learning rate (called once every epoch)
     def update_learning_rate(self):
